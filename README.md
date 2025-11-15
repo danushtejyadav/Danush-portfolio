@@ -1,16 +1,58 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Danush Portfolio
 
-Currently, two official plugins are available:
+A modern, interactive portfolio website for Danush Tej Yadav, built with React, Vite, and Tailwind CSS. This project showcases projects, skills, and contact information in a clean, responsive design.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌐 Live Website
 
-## React Compiler
+Paste your hosted website link here:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```
+https://your-portfolio-link.com
+```
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Animated hero section with profile image
+- About, Projects, Skills, and Contact sections
+- AI-powered message draft helper (Gemini API integration)
+- Responsive design with Tailwind CSS
+- Easy to customize and extend
+
+## 🛠️ Getting Started
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/danushtejyadav/Danush-portfolio.git
+   cd Danush-portfolio
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+3. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+4. **Build for production:**
+   ```bash
+   npm run build
+   ```
+
+## 📁 Project Structure
+
+- `src/components/` — React components for layout and sections
+- `src/data/portfolioData.js` — Main data for projects, skills, and profile
+- `src/api/gemini.js` — Gemini API integration for AI message drafts
+- `public/` — Static assets
+
+## 📬 Contact
+
+- **Email:** danushtejyadav@gmail.com
+- **GitHub:** [danushtejyadav](https://github.com/danushtejyadav)
+- **LinkedIn:** [Danush Tej Yadav](https://www.linkedin.com/in/danush-tej-yadav-s/)
+
+---
+
+> Built with ❤️ by Danush Tej Yadav
