@@ -10,7 +10,10 @@ export const Hero = React.forwardRef(({ onNavClick }, ref) => (
       {/* Left Content */}
       <div className="hero-text-content">
         <h1 className="hero-title">
-          Hi, I'm <span className="hero-title-name">{portfolioData.name}</span>
+          Hi, I'm{' '}
+          <span className="hero-title-name" style={{ whiteSpace: 'nowrap' }}>
+            {portfolioData.name.replace(/ /g, '\u00A0')}
+          </span>
         </h1>
         <p className="hero-headline">
           {portfolioData.headline}
@@ -22,6 +25,15 @@ export const Hero = React.forwardRef(({ onNavClick }, ref) => (
             className="hero-button-primary"
           >
             Get in Touch
+          </a>
+          <a
+            href="/danush_resume_updated.pdf"
+            download
+            className="hero-button-secondary"
+            style={{ display: 'inline-flex', alignItems: 'center' }}
+          >
+            <span className="hero-button-icon" style={{ marginRight: '0.5rem' }}>📄</span>
+            Download Resume
           </a>
           <a
             href={portfolioData.github}
