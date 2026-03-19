@@ -1,40 +1,30 @@
-// --- (1.1) GEMINI API UTILITIES ---
-
-const apiKey = import.meta.env.VITE_GEMINI_API_KEY;// WARNING: Keep this secure!
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export async function callGeminiAPI(prompt, systemInstruction, retries = 5, delay = 1000) {
-  const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-  
-  const payload = {
-    contents: [{ parts: [{ text: prompt }] }],
-    systemInstruction: {
-      parts: [{ text: systemInstruction }]
-    },
-  };
+export async function callGeminiAPI(prompt, systemInstruction, retries = 3, delay = 800) {
+  const payload = { prompt, systemInstruction };
 
-  for (let i = 0; i < retries; i++) {
+  for (let i = 0; i < retries; i += 1) {
     try {
-      const response = await fetch(apiUrl, {
+      const response = await fetch('/.netlify/functions/gemini', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
       });
 
+      const result = await response.json().catch(() => ({}));
+
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(result.error || `HTTP error! status: ${response.status}`);
       }
 
-      const result = await response.json();
-      const candidate = result.candidates?.[0];
-
-      if (candidate && candidate.content?.parts?.[0]?.text) {
-        return candidate.content.parts[0].text;
-      } else {
-        throw new Error("Invalid response structure from API.");
+      if (result.text) {
+        return result.text;
       }
+
+      throw new Error('Invalid response structure from API.');
     } catch (error) {
       console.error(`Attempt ${i + 1} failed:`, error);
+
       if (i < retries - 1) {
         await sleep(delay * Math.pow(2, i));
       } else {
@@ -42,4 +32,6 @@ export async function callGeminiAPI(prompt, systemInstruction, retries = 5, dela
       }
     }
   }
+
+  return "Sorry, I couldn't generate a response right now.";
 }
